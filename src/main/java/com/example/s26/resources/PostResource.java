@@ -1,5 +1,6 @@
 package com.example.s26.resources;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class PostResource {
 
 		text = URL.decodeParam(text);
 		List<Post> u = service.findByTitle(text);
+		return ResponseEntity.ok().body(u);
+	}
+	
+	@GetMapping(value = "/fullsearch")
+	public ResponseEntity<List<Post>> fullsearch(@RequestParam (value = "text", defaultValue = "") String text,@RequestParam (value = "minDate", defaultValue = "") String minDate,@RequestParam (value = "maxDate", defaultValue = "") String maxDate) {
+
+		text = URL.decodeParam(text);
+		Date mind = URL.convertDate(minDate, new Date(0L));
+		Date maxd = URL.convertDate(maxDate, new Date());
+		List<Post> u = service.fullSearch(text,mind,maxd);
 		return ResponseEntity.ok().body(u);
 	}
 	
