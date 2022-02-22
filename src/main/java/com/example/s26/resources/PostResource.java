@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.s26.DTO.UserDTO;
 import com.example.s26.domain.Post;
 import com.example.s26.services.PostService;
 
